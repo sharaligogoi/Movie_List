@@ -24,6 +24,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     private lateinit var tvMovieSynopsis: TextView
     private lateinit var ratingBar: RatingBar
     private lateinit var tvUserReview: TextView
+    private lateinit var ivBack: ImageView
 
     private val detailsViewModel: MovieDetailsActivityViewModel by viewModels()
 
@@ -37,17 +38,20 @@ class MovieDetailsActivity : AppCompatActivity() {
         val movie = getMovieIntent()
 
         tvMovieName.text = movie?.title
-        tvReleaseDate.text = movie?.releaseDate
+        tvReleaseDate.text = "R|3h 7min|${movie?.releaseDate}"
         bindMoviePoster(movie)
         tvMovieSynopsis.text = movie?.description
         tvRating.text = (movie?.ratings?.div(2)).toString()
         ratingBar.rating = ((movie?.ratings)?.div(2)!!)
         tvUserReview.text = movie?.usersReview.toString()+"(Users)"
 
+        Log.d("Genre List", "onCreate: $movie")
         val genreList = movie.genreIds
         Log.d("Genre List", "onCreate: ${movie.genreIds}")
         detailsViewModel.genres.observe(this){
             val map = it
+
+            Log.d("Genre List","$map")
             genreList?.let {
                 for(i in 0 until (genreList.size)){
                     val chip = Chip(this)
@@ -58,6 +62,10 @@ class MovieDetailsActivity : AppCompatActivity() {
             }
 
         }
+        ivBack.setOnClickListener{
+            this.onBackPressed()
+        }
+
     }
 
 
@@ -71,6 +79,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         tvMovieSynopsis = findViewById(R.id.tv_movie_details_activity_synopsis)
         ratingBar = findViewById(R.id.rtb_movie_details_activity_sore)
         tvUserReview =findViewById(R.id.tv_movie_details_activity_user_review)
+        ivBack = findViewById(R.id.iv_movie_details_activity_back)
     }
 
 

@@ -22,8 +22,8 @@ data class MovieDto(
     @SerializedName("popularity")
     var popularity: Float,
 
-    @SerializedName("genres")
-    var genre_ids: List<Int>,
+    @SerializedName("genre_ids")
+    var genre_ids: List<Int>?,
 
     @SerializedName("vote_average")
     var ratings: Float,

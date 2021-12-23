@@ -10,7 +10,7 @@ data class Movie(
                  val description: String,
                  val releaseDate: String,
                  val posterUrl: String?,
-                 val genreIds: List<Int>,
+                 val genreIds: List<Int>?,
                  val ratings: Float,
                  val usersReview: Long
 ) : Parcelable

@@ -13,7 +13,8 @@
         android:theme="@style/Theme.MoviesList">
         <activity
             android:name=".moviedetailsactivity.MovieDetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MoviesList.NoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
