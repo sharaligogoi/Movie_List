@@ -19,7 +19,8 @@ class MoviesListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieModelViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_first_list_movie_model, parent, false)
+            .inflate(R.layout.layout_now_showing_movie_model, parent, false)
+
 
         return MovieModelViewHolder(view, onMovieClickListener)
     }
@@ -34,7 +35,7 @@ class MoviesListAdapter(
         private val onMovieClickListener: OnMovieClickListener
     ) :
         RecyclerView.ViewHolder(itemView) {
-        private val ivMovieBanner: ImageView = itemView.findViewById(R.id.iv_first_list_movie_model)
+        private val ivMovieBanner: ImageView = itemView.findViewById(R.id.iv_now_showing_movie_list)
 
         init {
             itemView.setOnClickListener{

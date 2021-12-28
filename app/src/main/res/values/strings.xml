@@ -12,4 +12,6 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="now_showing">Now Showing</string>
     <string name="reviews">Reviews: 10(Critics)|</string>
+    <string name="book_now">BOOK NOW</string>
+    <string name="synopsis">Synopsis</string>
 </resources>

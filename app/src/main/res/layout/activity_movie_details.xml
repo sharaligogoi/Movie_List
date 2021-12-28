@@ -38,7 +38,6 @@
                         app:layout_constraintWidth_percent="0.3"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="2:3"
                         android:layout_marginTop="50dp"
                         android:layout_marginStart="20dp"
@@ -54,7 +53,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         tools:text="Movie nam bbbb"
                         android:maxLines="1"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:ellipsize="end"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="10dp"
@@ -81,9 +80,9 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/tv_movie_details_activity_release_date"
                         app:layout_constraintStart_toEndOf="@id/iv_movie_details_activity_movie_poster"
-                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginStart="20dp"
-                        app:layout_constraintWidth_default="wrap"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="8dp"
 
                         />
 
@@ -93,13 +92,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@id/iv_movie_details_activity_movie_poster"
+                        app:layout_constraintBottom_toTopOf="@id/tv_movie_details_activity_reviews"
                         app:layout_constraintTop_toBottomOf="@id/cg_movie_details_activity_chip_grp"
                         android:max="5"
                         android:numStars="5"
                         android:rating="0.0"
                         android:stepSize="0.0"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="60dp"
                         android:progressTint="@color/cardview_light_background"/>
 
                     <TextView
@@ -117,14 +117,15 @@
                         android:id="@+id/tv_movie_details_activity_reviews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rtb_movie_details_activity_sore"
                         app:layout_constraintStart_toEndOf="@id/iv_movie_details_activity_movie_poster"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         android:text="@string/reviews"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="12dp"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:textColor="#99A6ED"
+                        android:layout_marginBottom="100dp"
+
                         />
 
                     <TextView
@@ -134,16 +135,43 @@
                         app:layout_constraintStart_toEndOf="@id/tv_movie_details_activity_reviews"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tv_movie_details_activity_reviews"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         android:maxLines="1"
                         android:ellipsize="end"
                         tools:text="2345(Users)"
-                        android:textColor="#99A6ED"/>
+                        android:textColor="#99A6ED"
+                        android:layout_marginBottom="100dp"
+                        />
 
 
 
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cv_movie_details_activity"
+                app:layout_constraintBottom_toBottomOf="@id/cv_movie_details_activity"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="12dp"
+                app:cardCornerRadius="50dp"
+                app:layout_constraintHeight_percent="20"
+                app:layout_constraintWidth_percent="20"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_now"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="8dp"
+                    android:textColor="#5818A5"
+                    android:textStyle="bold"
+                    />
+
             </androidx.cardview.widget.CardView>
 
 
@@ -157,8 +185,8 @@
                app:layout_constraintTop_toBottomOf="@id/cv_movie_details_activity"
                android:layout_marginTop="40dp"
                android:layout_marginStart="12dp"
-               android:textSize="16sp"
-               android:text="Synopsis"
+               android:textSize="18sp"
+               android:text="@string/synopsis"
                android:textStyle="bold"
                />
 
@@ -198,7 +226,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Movies"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#99A6ED"
         android:layout_marginTop="8dp"/>

@@ -9,22 +9,26 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import com.assignment.movieslist.R
+import com.assignment.movieslist.SliderAdapter
 import com.assignment.movieslist.databinding.FragmentHomeBinding
 import com.assignment.movieslist.domain.models.Movie
 import com.assignment.movieslist.moviedetailsactivity.MovieDetailsActivity
 import com.assignment.movieslist.ui.adapters.MoviesListAdapter
+import kotlin.math.abs
 
 class HomeFragment : Fragment(), MoviesListAdapter.OnMovieClickListener {
 
     private val homeViewModel: HomeViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
 
-    private lateinit var firstMovieListAdapter: MoviesListAdapter
+    private lateinit var firstMovieListAdapter: SliderAdapter
     private lateinit var secondMovieListAdapter: MoviesListAdapter
-    private lateinit var rcvFirstMovieList: RecyclerView
+    private lateinit var vpFirstMovieList: ViewPager2
     private lateinit var rcvSecondMovieList: RecyclerView
 
     private lateinit var gridLayoutManager: GridLayoutManager
@@ -45,8 +49,8 @@ class HomeFragment : Fragment(), MoviesListAdapter.OnMovieClickListener {
             firstMovieListAdapter.notifyItemRangeInserted(it.first,it.last)
         }
 
-        firstMovieListAdapter = MoviesListAdapter(homeViewModel.movieList, this)
-        rcvFirstMovieList.adapter = firstMovieListAdapter
+
+        setViewPager()
 
         secondMovieListAdapter = MoviesListAdapter(homeViewModel.movieList, this)
         rcvSecondMovieList.adapter = secondMovieListAdapter
@@ -72,14 +76,9 @@ class HomeFragment : Fragment(), MoviesListAdapter.OnMovieClickListener {
 
 
     private fun setUpRecyclerView(view: View) {
-        rcvFirstMovieList = view.findViewById(R.id.rcv_home_fragment_first_movies_list)
+        vpFirstMovieList = view.findViewById(R.id.vp_home_fragment_movies)
         rcvSecondMovieList = view.findViewById(R.id.rcv_home_fragment_second_movie_list)
 
-        rcvFirstMovieList.layoutManager = LinearLayoutManager(
-            context,
-            LinearLayoutManager.HORIZONTAL,
-            false
-        )
 
         gridLayoutManager = GridLayoutManager(context, 3)
         rcvSecondMovieList.layoutManager = gridLayoutManager
@@ -95,6 +94,26 @@ class HomeFragment : Fragment(), MoviesListAdapter.OnMovieClickListener {
         }
 
         return list
+    }
+
+    private fun setViewPager(){
+        firstMovieListAdapter = SliderAdapter(vpFirstMovieList,homeViewModel.movieList)
+        vpFirstMovieList.adapter = firstMovieListAdapter
+        vpFirstMovieList.clipToPadding = false
+        vpFirstMovieList.clipChildren = false
+        vpFirstMovieList.offscreenPageLimit = 3
+        vpFirstMovieList.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+
+        val compositePageTransformer = CompositePageTransformer()
+        compositePageTransformer.addTransformer(MarginPageTransformer(40))
+        compositePageTransformer.addTransformer { page, position ->
+            val r: Float = 1- abs(position)
+            page.scaleY = 0.85f + r*0.15f
+        }
+
+        vpFirstMovieList.setPageTransformer(compositePageTransformer)
+
+
     }
 
     override fun onClick(position: Int) {
