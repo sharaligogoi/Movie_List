@@ -16,7 +16,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.assignment.movieslist.R
 import com.assignment.movieslist.SliderAdapter
 import com.assignment.movieslist.databinding.FragmentHomeBinding
-import com.assignment.movieslist.domain.models.Movie
 import com.assignment.movieslist.moviedetailsactivity.MovieDetailsActivity
 import com.assignment.movieslist.ui.adapters.MoviesListAdapter
 import kotlin.math.abs
@@ -84,17 +83,7 @@ class HomeFragment : Fragment(), MoviesListAdapter.OnMovieClickListener {
         rcvSecondMovieList.layoutManager = gridLayoutManager
 
     }
-
-
-    private fun getFirstMovieList(): ArrayList<Movie> {
-        val list = ArrayList<Movie>()
-
-        for (i in 0..4) {
-            list.add(homeViewModel.movieList[i])
-        }
-
-        return list
-    }
+    
 
     private fun setViewPager(){
         firstMovieListAdapter = SliderAdapter(vpFirstMovieList,homeViewModel.movieList)
